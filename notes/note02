@@ -1,0 +1,110 @@
+#2. Interacting with a Smart Contract
+Interacting with a deployed Ethereum smart contract by updating a smart contract variable
+
+###
+
+Steps:
+**#1. Create and Deploy your Smart Contract using Hardhat**
+**#2. Interacting with a Smart Contract**
+**#3. Submitting a Smart Contract to Etherscan**
+**#4. Integrating Your Smart Contract with the Frontend**
+
+2.1 Create an interact.js file
+2.2 Update .env file
+2.3 Grab your contract ABI
+2.4 Create an instance of your contract
+2.5 Read the init message
+2.6 Update the message
+2.7 Read the new message
+
+###
+
+2.1 Create an interact.js file
+-using the Ethers.js library
+// interact.js
+
+const API_URL = process.env.API_URL;
+const PRIVATE_KEY = process.env.PRIVATE_KEY;
+const CONTRACT_ADDRESS = process.env.CONTRACT_ADDRESS;
+
+2.2 Update .env file
+
+# .env
+
+API_URL = "https://eth-sepolia.g.alchemy.com/v2/<your-api-key>"
+API_KEY = "<your-api-key>"
+PRIVATE_KEY = "<your-metamask-private-key>"
+CONTRACT_ADDRESS = "0x<your contract address>"
+
+2.3 Grab your contract ABI
+Our contract ABI (Application Binary Interface) is the interface to interact with our smart contract
+Hardhat automatically generates an ABI for us and saves it in the HelloWorld.json file.
+To use this, we'll need to parse out the contents by adding the following lines of code to our contract interact.js file:
+
+// For Hardhat
+const contract = require("../artifacts/contracts/HelloWorld.sol/HelloWorld.json");
+
+If you want to see the ABI, you can print it to your console:
+console.log(JSON.stringify(contract.abi));
+
+To run interact.js and see your ABI printed to the console, navigate to your terminal and run
+
+npx hardhat run scripts/interact.js
+
+2.4 Create an instance of your contract
+To interact with our contract, we need to create an instance of it in our code. To do so with Ethers.js, we'll need to work with three concepts:
+
+Provider - This is a node provider that gives you read and write access to the blockchain.
+Signer - This represents an Ethereum account that has the ability to sign transactions.
+Contract - This is an Ethers.js object representing a specific contract deployed on-chain.
+
+2.5 Read the init message
+Remember when we deployed our contract with theinitMessage = "Hello world!"? We will now read that message stored in our smart contract and print it to the console.
+
+async function main() {
+const message = await helloWorldContract.message();
+console.log("The message is: " + message);
+}
+main();
+
+After running the file using npx hardhat run scripts/interact.js in the terminal, we should see this response:
+_The message is: Hello world!_
+
+Congrats! You've just successfully read smart contract data from the Ethereum blockchain, way to go!
+
+2.6 Update the message
+Now, instead of just reading the message, we can also update the message saved in our smart contract using the update function!
+we can directly call the update function on our instantiated Contract object like so:
+async function main() {
+const message = await helloWorldContract.message();
+console.log("The message is: " + message);
+
+console.log("Updating the message...");
+const tx = await helloWorldContract.update("This is the new message.");
+await tx.wait();
+}
+main();
+
+2.7 Read the new message
+
+async function main() {
+const message = await helloWorldContract.message();
+console.log("The message is: " + message);
+
+    console.log("Updating the message...");
+    const tx = await helloWorldContract.update("this is the new message");
+    await tx.wait();
+
+    const newMessage = await helloWorldContract.message();
+    console.log("The new message is: " + newMessage);
+
+}
+
+main();
+
+npx hardhat run scripts/interact.js --network sepolia
+The message is: Hello World!
+Updating the message...
+The new message is: This is the new message.
+
+You've now deployed AND interacted with an Ethereum smart contract.
