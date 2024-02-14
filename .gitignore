@@ -6,3 +6,17 @@ node_modules/
 
 # Environment variables file
 .env
+
+# Cache directories
+cache/
+.cached/
+.tmp/
+
+# Cache files
+cache/solidity-files-cache.json
+
+# Artifacts directories
+artifacts/
+build/
+dist/
+

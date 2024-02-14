@@ -104,5 +104,52 @@ Hardhat makes it super easy to integrate Plugins for additional tooling and exte
 We’ve added several dependencies and plugins so far, now we need to update hardhat.config.js so that our project knows about all of them.
 
 **1.14 Compile our contract**
+The compile task is one of the built-in hardhat tasks.
+*npx hardhat compile*
+Compiled 1 Solidity file successfully (evm target: istanbul).
+
 **1.15 Write the deploy script**
+Navigate to the scripts/ folder and create a new file called deploy.js, adding the following contents to it:
+
+---
+deploy.js
+async function main() {
+   const HelloWorld = await ethers.getContractFactory("HelloWorld");
+
+   // Start deployment, returning a promise that resolves to a contract object
+   const hello_world = await HelloWorld.deploy("Hello World!");   
+   console.log("Contract deployed to address:", hello_world.address);
+}
+
+main()
+  .then(() => process.exit(0))
+  .catch(error => {
+    console.error(error);
+    process.exit(1);
+  });
+---
+
+Hardhat does an amazing job of explaining what each of these lines of code does in their Contracts tutorial, we’ve adopted their explanations here.
+
+---
+*const HelloWorld = await ethers.getContractFactory("HelloWorld");*
+A *ContractFactory* in ethers.js is an abstraction used to *deploy new smart contracts*, so HelloWorld here is a factory for instances of our Hello World contract. When using the hardhat-ethers plugin ContractFactory and Contract, instances are connected to the first signer (owner) by default.
+
+---
+*const hello_world = await HelloWorld.deploy();*
+Calling *deploy()* on a *ContractFactory* will start the deployment and return a Promise that resolves to a Contract object. This object has a method for each of our smart contract functions.
+
+
 **1.16 Deploy the contract**
+*npx hardhat run scripts/deploy.js --network sepolia*
+You should then see something like:
+Contract deployed to address: 0xBdbcBd678EaB4cD8e4e3c3BF943D5faa269Bd9E1
+copy and paste this address to save it somewhere. 
+
+ go to the Sepolia etherscan and search for our contract address, we should see that it has been deployed successfully. 
+ https://sepolia.etherscan.io/ 
+
+ The From address should match your Metamask account address and the To address will say “Contract Creation”, 
+ but if we click into the transaction, we’ll see our contract address in the To field. 0xBdbcBd678EaB4cD8e4e3c3BF943D5faa269Bd9E1 
+
+ Congrats! You just deployed a smart contract to the Ethereum chain 🎉
