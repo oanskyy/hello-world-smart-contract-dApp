@@ -1,0 +1,91 @@
+#Hardhat
+This project focuses on using **Hardhat**. It is a development environment for building on Ethereum. Hardhat is the newer kid on the block and tends to be a bit cleaner/easier to use, they also have lots of plugins to make it more customizable.
+
+###
+Steps:
+**#1. Create and Deploy your Smart Contract using Hardhat**
+**#2. Interacting with a Smart Contract**
+**#3. Submitting a Smart Contract to Etherscan**
+**#4. Integrating Your Smart Contract with the Frontend**
+
+###
+**Instalations:**
+**1.1 Connect to the Ethereum network**
+- use Alchemy API that allows us to communicate with the Ethereum chain without running our own nodes.
+**1.2 Create your app (and API key)**
+- generate an API key by creating an app. This will allow us to make requests to the Sepolia test network
+**1.3 Create an Ethereum ACCOUNT ADDRESS**
+- download and create a Metamask account for free
+- switch to the “Sepolia Test Network” in the upper right corner (to use test/fake money)
+**1.4 Add (test) Ether from a Faucet (Sepolia)**
+  To deploy oursmart contract to the test network, we’ll need some fake ETH. To get ETH, you can go to the Sepolia faucet and log into your Alchemy account and enter your wallet address, then click “Send Me ETH.”
+  https://www.alchemy.com/faucets/ethereum-sepolia
+**1.5 Check your Balance**
+**1.6 Initialize our Project**
+  _mkdir hello-world_
+  _cd hello-world_
+  _npm init_
+
+---
+**1.7 Download Hardhat**
+Hardhat is a development environment to compile, deploy, test, and debug your Ethereum software. It helps developers build smart contracts and dApps locally before deploying to the live chain.
+_npm install --save-dev hardhat_
+
+**1.8 Create a Hardhat Project**
+*npx hardhat init*
+This will generate a hardhat.config.js file for us, which is where we’ll specify all of the set up for our project
+
+**1.9 Add project folders**
+*mkdir contracts*
+*mkdir scripts*
+
+contracts/ is where we’ll keep our Hello World smart contract code file
+scripts/ is where we’ll keep scripts to deploy and interact with our contract
+
+hello-world-dapp/
+│
+├── .gitignore            # Git ignore file
+│
+├── contracts/            # Solidity smart contract files
+│   └── HelloWorld.sol   
+│
+├── scripts/              # Hardhat deployment scripts or other scripts
+│   └── deploy.js        
+│
+├── src/                  # Frontend source files
+│   ├── components/       # Reusable UI components
+│   │   └── HelloWorld.js
+│   ├── css/              # CSS files
+│   │   └── styles.css
+│   ├── images/           # Image assets
+│   ├── App.js            # Main application component
+│   └── index.js          # Entry point for frontend
+│
+├── test/                 # Test files for smart contracts
+│   └── hello-world-test.js
+│
+├── hardhat.config.js     # Hardhat configuration file
+│
+├── .env                  # Environment variables (e.g., Alchemy API key)
+│
+├── package.json          # npm package configuration
+│
+├── node_modules/         # Installed npm packages
+│
+└── README.md             # Project documentation
+
+
+###
+**Smart Contract:**
+**1.10 Write our Smart Contract**
+- Smart contracts are written in a language called Solidity, which we will use to write our HelloWorld.sol smart contract.‌
+- Navigate to the “contracts” folder and create a new file called HelloWorld.sol
+- Below is a sample Hello World smart contract from the Ethereum Foundation that we will be using for this project 
+- Copy and paste the contents below into your HelloWorld.sol file.
+- This is a super simple smart contract that stores a message upon creation and can be updated by calling the update function.
+**1.11 Connect MetaMask & Alchemy to your project**
+**1.12 Install Ethers.js**
+**1.13 Update hardhat.config.js**
+**1.14 Compile our contract**
+**1.15 Write the deploy script**
+**1.16 Deploy the contract**

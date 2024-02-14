@@ -1,0 +1,25 @@
+{
+  "name": "hello-world-smart-contract",
+  "version": "1.0.0",
+  "description": "Create and deploy a simple smart contract on the Sepolia test network using a virtual wallet (Metamask), Solidity, Hardhat, and Alchemy",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "smart",
+    "contract",
+    "sepolia",
+    "test",
+    "network",
+    "metamask",
+    "hardhat",
+    "solidity",
+    "alchemy"
+  ],
+  "author": "0xoansky",
+  "license": "ISC",
+  "devDependencies": {
+    "hardhat": "^2.20.0"
+  }
+}
