@@ -84,8 +84,25 @@ hello-world-dapp/
 - Copy and paste the contents below into your HelloWorld.sol file.
 - This is a super simple smart contract that stores a message upon creation and can be updated by calling the update function.
 **1.11 Connect MetaMask & Alchemy to your project**
+We’ve created a Metamask wallet, an Alchemy account, and written our smart contract. Now, it’s time to connect the three.
+
+Every transaction sent from your virtual wallet requires a signature using your unique private key. We can safely store our private key (and Alchemy API key) in an environment file to provide our program with this permission.
+First, install the dotenv package in your project directory:
+*npm install dotenv --save*
+
+create a .env file in the root directory of our project, and add your Metamask private key and HTTP Alchemy API URL to it.
+
 **1.12 Install Ethers.js**
+Ethers.js is a library that makes it easier to interact and make requests to Ethereum by wrapping standard JSON-RPC methods with more user-friendly methods.
+
+Hardhat makes it super easy to integrate Plugins for additional tooling and extended functionality. We’ll be taking advantage of the Ethers plugin for contract deployment (Ethers.js has some super clean contract deployment methods).
+
+*npm install ethers@5.7.2*
+*npm install --save-dev @nomiclabs/hardhat-ethers*
+
 **1.13 Update hardhat.config.js**
+We’ve added several dependencies and plugins so far, now we need to update hardhat.config.js so that our project knows about all of them.
+
 **1.14 Compile our contract**
 **1.15 Write the deploy script**
 **1.16 Deploy the contract**
